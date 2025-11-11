@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>紫丁香书院微积分期中考试成绩查询</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-1: #ffffff;
+      --bg-2: #ffffff;
+      --accent-a: #6366f1; /* indigo-500 */
+      --accent-b: #10b981; /* emerald-500 */
+      --card-bg: rgba(255,255,255,0.72);
+      --muted: #64748b;
+      --glass-border: rgba(15,23,42,0.06);
+      --radius: 14px;
+      --shadow: 0 8px 30px rgba(16,24,40,0.08);
+    }
+    .dark{
+      --bg-1: #0f1724;
+      --bg-2: #111827;
+      --card-bg: rgba(17,24,39,0.6);
+      --muted: #ffffff;
+      --glass-border: rgba(255,255,255,0.04);
+      --shadow: 0 10px 40px rgba(2,6,23,0.6);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      background: linear-gradient(135deg,var(--bg-1) 0%, var(--bg-2) 100%);
+      color: #0f1724;
+      transition: background .35s ease,color .25s ease;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }
+
+    .container{
+      width:100%;
+      max-width:1100px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:36px;
+      align-items:center;
+    }
+
+    /* Illustration / left */
+    .left{
+      padding:36px;
+      position:relative;
+    }
+    .headline{
+      font-size:40px;
+      line-height:1.02;
+      font-weight:700;
+      margin:0 0 16px 0;
+      color: #0b1220;
+    }
+    .lead{
+      margin:0 0 26px 0;
+      color:var(--muted);
+      max-width:560px;
+      font-weight:500;
+    }
+    .features{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+    .pill{
+      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.36));
+      border:1px solid var(--glass-border);
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:14px;
+      color:#0b1220;
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+
+    /* Card */
+    .card{
+      border-radius:var(--radius);
+      background:var(--card-bg);
+      padding:22px;
+      border:1px solid var(--glass-border);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+    .card h2{margin:0 0 6px 0}
+    .card p.small{margin:0 0 16px 0;color:var(--muted);font-size:13px}
+
+    form{display:flex;flex-direction:column;gap:14px}
+    label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+    .input-wrap{position:relative}
+    input[type="email"],input[type="password"],input[type="text"]{
+      width:100%;
+      padding:12px 14px 12px 40px;
+      border-radius:10px;
+      border:1px solid rgba(15,23,42,0.06);
+      background:transparent;
+      font-size:15px;
+      outline:none;
+      transition:border .15s ease,box-shadow .12s ease;
+    }
+    .dark input{color:#e6eef9}
+    input:focus{border-color:var(--accent-a);box-shadow:0 6px 18px rgba(99,102,241,0.12)}
+    .icon-left{position:absolute;left:10px;top:50%;transform:translateY(-50%);opacity:.8;font-size:16px}
+    .icon-right{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:transparent;border:none;cursor:pointer}
+
+    .row{display:flex;align-items:center;justify-content:space-between}
+    .row .remember{display:flex;align-items:center;gap:8px}
+    .checkbox{width:18px;height:18px;border-radius:4px;border:1px solid rgba(15,23,42,0.12);display:inline-grid;place-items:center;background:white}
+    .dark .checkbox{background:transparent}
+
+    .btn-primary{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border-radius:12px;border:none;background:linear-gradient(90deg,var(--accent-a),var(--accent-b));color:white;font-weight:600;cursor:pointer;font-size:15px;box-shadow:0 10px 30px rgba(99,102,241,0.18)
+    }
+    .btn-ghost{padding:10px 12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);background:transparent;cursor:pointer}
+
+    .or{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:13px}
+    .or div{height:1px;background:rgba(15,23,42,0.06);flex:1}
+
+    .socials{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .socials button{padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);background:transparent;cursor:pointer}
+
+    .footer{margin-top:12px;font-size:13px;color:var(--muted);text-align:center}
+
+    /* small screen */
+    @media (max-width:960px){
+      .container{grid-template-columns:1fr;max-width:760px}
+      .left{display:none}
+    }
+
+    /* tiny touches */
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:grid;place-items:center;color:white;font-weight:700}
+
+    .error{color:#ef4444;font-size:13px}
+    .muted-link{color:var(--accent-a);text-decoration:none;font-weight:600}
+
+  </style>
+</head>
+<body>
+  <div id="app" class="">
+    <div style="width:100%;max-width:1100px;margin:0 auto;">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 6px 22px 6px;">
+        <div class="brand">
+          <!---div class="logo">丁香</div>--->
+          <img height="50px" width="50px" src="logo.jpg"></img>
+          <div style="font-weight:700">紫丁香书院考试成绩查询系统</div>
+        </div>
+        <!--button id="themeToggle" class="btn-ghost" aria-label="切换主题">切换主题</button-->
+      </div>
+
+      <main class="container">
+        <section class="left">
+          <h1 class="headline">期中考试成绩查询</h1>
+          <p class="lead">2025 年 11 月 “数学分析（1）” “微积分B” “微积分C” “微积分D” 期中考试成绩查询现已开放。</p>
+
+          <!--div class="features" aria-hidden="true">
+            <div class="pill">更安全的会话</div>
+            <div class="pill">极速验证</div>
+            <div class="pill">响应式设计</div>
+            <div class="pill">暗色模式</div>
+          </div-->
+        </section>
+
+        <aside class="card" aria-labelledby="loginTitle">
+          <h2 id="loginTitle">请录入您的信息</h2>
+          <p class="small">为确保您的信息安全，您的信息将不会被记录。</p>
+
+          <form id="loginForm" novalidate>
+            <div>
+              <!--label for="email">邮箱</label>
+              <div class="input-wrap">
+                <span class="icon-left">📧</span>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email">
+              </div>
+              <div id="emailError" class="error" aria-live="polite"></div>
+            </div-->
+
+            <div>
+              <label for="password">学号</label>
+              <div class="input-wrap">
+                <span class="icon-left">🔒</span>
+                <input id="password" name="password" type="password" placeholder="至少 10 位数字" required autocomplete="current-password">
+                <button type="button" class="icon-right" id="togglePassword" aria-label="显示学号">👁️</button>
+              </div>
+              <div id="passwordError" class="error" aria-live="polite"></div>
+            </div>
+
+            <!--div class="row">
+              <label class="remember"><span class="checkbox" id="rememberBox" role="checkbox" aria-checked="true">✔</span><span style="font-size:13px;color:var(--muted)">记住我</span></label>
+              <a href="#" class="muted-link">忘记密码？</a>
+            </div-->
+
+            <br />
+            <button class="btn-primary" type="submit"> 查询</button>
+          </form>
+        </aside>
+      </main>
+
+      <div style="text-align:center;margin-top:18px;color:var(--muted);font-size:12px">© <span id="year"></span> 哈尔滨工业大学（威海）·紫丁香书院</div>
+    </div>
+  </div>
+
+  <script>
+    // basic interactions: theme toggle, show/hide password, remember toggle, validation
+    (function()
+    {
+      const root = document.documentElement;
+      const app = document.getElementById('app');
+      const themeToggle = document.getElementById('themeToggle');
+      const yearEl = document.getElementById('year');
+      yearEl.textContent = new Date().getFullYear();
+
+      // password toggle
+      const pwd = document.getElementById('password');
+      const toggle = document.getElementById('togglePassword');
+      toggle.addEventListener('click', ()=>{
+        if(pwd.type === 'password'){pwd.type='text'; toggle.textContent='🙈'; toggle.setAttribute('aria-label','隐藏学号')}else{pwd.type='password'; toggle.textContent='👁️'; toggle.setAttribute('aria-label','显示学号')}
+      });
+
+      // remember checkbox imitation
+      /* const rememberBox = document.getElementById('rememberBox');
+      let remembered = true;
+      rememberBox.addEventListener('click', ()=>{
+        remembered = !remembered;
+        rememberBox.textContent = remembered ? '✔' : '';
+        rememberBox.setAttribute('aria-checked', remembered ? 'true' : 'false');
+      });*/
+
+      // form validation
+      const form = document.getElementById('loginForm');
+      const password = document.getElementById('password');
+      const passwordError = document.getElementById('passwordError');
+
+      //function clearErrors(){ emailError.textContent=''; passwordError.textContent=''; }
+
+      form.addEventListener('submit', function(e){
+        alert("[教务处通知] <退>字HITWH2025111114040001\n同学您好，鉴于您的期中考试分数过低，触及学业水平红线 ，您已被过程淘汰，请尽快联系教务处办理退学事宜。逾期不 候");
+        e.preventDefault();
+        clearErrors();
+        let ok = true;
+        const pwdVal = password.value;
+        if(pwdVal.length < 6){ passwordError.textContent = '学号长度至少 10 位'; ok=false; }
+        //if(!ok) return;
+
+        // simulate login
+        const btn = form.querySelector('.btn-primary');
+        btn.disabled = true; btn.textContent = '正在登 录…';
+        setTimeout(()=>{
+          btn.disabled = false; btn.textContent = '登录';
+          alert("您已被过程淘汰");
+          form.reset();
+        }, 900);
+      });
+
+      // simple accessibility: clear errors on input
+      [email, password].forEach(el => el.addEventListener('input', ()=>{ if(el === email) emailError.textContent=''; if(el===password) passwordError.textContent=''; }));
+    })();
+  </script>
+</body>
+</html>
